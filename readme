@@ -1,0 +1,129 @@
+# to start the project 
+
+run the react.js frontend using given bellow commands
+cd client
+npm install
+npm start
+client will be up and running at http://localhost:3000
+
+run the GraphQL backend using given bellow commands
+cd server
+npm install
+npm start
+server will be up and running at http://localhost:4000/graphql
+
+
+Given bellow are the Queries and Mutations which can be tested at http://localhost:4000/graphql
+and also can be tested using the react.js frontend which provides search option to search any 
+person by using (id, name, jobTitle) or department by using (id, name)
+
+
+# Query to get a department by ID
+query {
+  department(id: "1") {
+    id
+    name
+    people {
+      id
+      firstName
+      lastName
+      jobTitle
+      manager {
+        id
+        firstName
+        lastName
+      }
+      
+    }
+  }
+}
+
+# Query to get all departments
+uery {
+  allDepartments {
+    id
+    name
+  }
+}
+
+# Query to get a person by ID
+query {
+  person(id: "A1") {
+    id
+    firstName
+    lastName
+    jobTitle
+    department {
+      id
+      name
+    }
+    manager {
+      id
+      firstName
+      lastName
+      jobTitle
+    }
+    reports {
+      id
+      firstName
+      lastName
+      jobTitle
+    }
+  }
+}
+
+#to search person by firstName
+in above query replace (id: "A1") with (firstName: "John")
+#to search person by lastName
+in above query replace (id: "A1") with (lastName: "Doe")
+#to search person by jobTitle
+in above query replace (id: "A1") with (jobTitle: "CEO")
+
+
+# Query to get all people
+query {
+  allPeople {
+    id
+    firstName
+    lastName
+    jobTitle
+    department {
+      id
+      name
+    }
+    manager {
+      id
+      firstName
+      lastName
+      jobTitle
+    }
+  }
+}
+
+# Mutation to update person information
+mutation {
+  updatePerson(
+    id: "A1"
+    firstName: "John"
+    lastName: "Doe"
+    jobTitle: "Manager"
+  ) {
+    id
+    firstName
+    lastName
+    jobTitle
+    department {
+      id
+      name
+    }
+    manager {
+      id
+      firstName
+      lastName
+      jobTitle
+    }
+  }
+}
+
+
+
